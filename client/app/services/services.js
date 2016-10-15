@@ -1,17 +1,9 @@
 angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
-  var getAll = function() {
-    return $http({
-      method: 'GET',
-      url: '/api/links'
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
 
-  var addOne = function(link) {
+  var addOne = function addOne(link) {
+    // todo: integrate $window.localStorage.getItem('com.shortly')
     return $http({
       method: 'POST',
       url: '/api/links',
@@ -22,9 +14,22 @@ angular.module('shortly.services', [])
     });
   };
 
+  var getAll = function getAll() {
+    return $http({
+      method: 'GET',
+      url: '/api/links',
+    })
+    .then(function (resp) {
+      return resp.data;
+
+    });
+  };
+
   return {
+
+    addOne: addOne,
     getAll: getAll,
-    addOne: addOne
+
   };
 })
 .factory('Auth', function ($http, $location, $window) {

@@ -15,7 +15,17 @@ angular.module('shortly', [
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
-    // Your code here
+    .when('/shorten', {
+      templateUrl: 'app/shorten/shorten.html',
+      controller: 'ShortenController',
+      authenticate: true // /#/shorten seems to require authentication even without this line
+    })
+    .when('/links', {
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController',
+      authenticate: true
+    })
+    .otherwise('/links');
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
