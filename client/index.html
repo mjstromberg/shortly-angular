@@ -7,6 +7,11 @@
   </head>
   <body>
     <h1>Shortly</h1>
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="goto('links')"
+      </md-nav-bar>
+    </md-content>
     <div class="navigation">
       <ul>
         <li><a href="#">Home</a></li>
@@ -20,6 +25,7 @@
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
     <script src="app/auth/auth.js"></script>
     <script src="app/links/links.js"></script>

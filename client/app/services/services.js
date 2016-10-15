@@ -20,8 +20,12 @@ angular.module('shortly.services', [])
       url: '/api/links',
     })
     .then(function (resp) {
-      return resp.data;
-
+      console.log('getAll response data: ', resp.data);
+      if (resp.data) {
+        return resp.data;
+      } else {
+        return [];
+      }
     });
   };
 

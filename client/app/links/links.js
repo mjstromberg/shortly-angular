@@ -5,12 +5,18 @@ angular.module('shortly.links', [])
   $scope.data = {};
   $scope.urlSearchString = '';
   
-  Links.getAll().then(function (links) {
-    links.sort(function(a, b) {
-      return a.visits < b.visits;
+  Links.getAll()
+    .then(function (links) {
+      // console.log('before sort: ', links);
+      links.sort(function(a, b) {
+        return a.visits < b.visits;
+      });
+      // console.log('after sort: ', links);
+      $scope.data.links = links;
+    })
+    .catch(function(error) {
+      console.error(error);
     });
-    $scope.data.links = links;
-  });
 
   $scope.filterLinks = function() {
     if ($scope.data.links) {

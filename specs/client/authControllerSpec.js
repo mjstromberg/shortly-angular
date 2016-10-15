@@ -47,7 +47,7 @@ describe('AuthController', function () {
 
     // make a 'fake' reques to the server, not really going to our server
     $httpBackend.expectPOST('/api/users/signup').respond({token: token});
-    $scope.signup();
+    $scope.signup(true);
     $httpBackend.flush();
     expect($window.localStorage.getItem('com.shortly')).to.equal(token);
   });
@@ -60,7 +60,7 @@ describe('AuthController', function () {
     // create a fake JWT for auth
     var token = 'sjj232hwjhr3urw90rof';
     $httpBackend.expectPOST('/api/users/signin').respond({token: token});
-    $scope.signin();
+    $scope.signin(true);
     $httpBackend.flush();
     expect($window.localStorage.getItem('com.shortly')).to.equal(token);
   });

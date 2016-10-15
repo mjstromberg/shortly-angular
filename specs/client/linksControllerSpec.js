@@ -48,6 +48,35 @@ describe('LinksController', function () {
     createController();
     $httpBackend.flush();
 
-    expect($scope.data.links).to.deep.equal(mockLinks);
+    expect($scope.data.links).to.eql(mockLinks);
+  });
+
+  it('display the links on the listing page sorted by visit count', function () {
+    var mockLinks = [{visits: 5}, {visits: 9}, {visits: 1}];
+    $httpBackend.expectGET('/api/links').respond(mockLinks);
+
+    createController();
+    $httpBackend.flush();
+
+    setTimeout(function() {
+      expect($scope.data.links[0].visits).to.deep.equal(9);
+    }, 100);
+  });
+
+  it('adds a live-search box that displays only the links that match the search criteria', function () {
+    var mockLinks = [{url: 'http://www.google.com', visits: 5}, {url: 'http://www.yahoo.com', visits: 9}, {url: 'http://www.appl.com', visits: 1}];
+    $httpBackend.expectGET('/api/links').respond(mockLinks);
+
+    createController();
+    $httpBackend.flush();    
+
+    expect($scope.filterLinks).to.be.a('function');
+
+    var fakeSearchString = 'google';
+    $scope.urlSeachString = fakeSearchString;
+
+    setTimeout(function() {
+      expect($scope.filterLinks()).to.equal([{url: 'http://www.google.com', visits: 5}]);
+    }, 100);
   });
 });

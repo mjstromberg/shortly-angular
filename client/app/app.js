@@ -4,6 +4,7 @@ angular.module('shortly', [
   'shortly.shorten',
   'shortly.auth',
   'ngRoute'
+  // 'ngMaterial'
 ])
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
