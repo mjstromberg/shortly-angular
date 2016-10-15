@@ -1,5 +1,10 @@
 <div id='container'>
-  <h1>Shorten!</h1>
+  <h1>shorten</h1>
+  <form name="shortenForm" ng-submit='addLink(shortenForm.$valid)'>
+    <input type='text' name="url" ng-model='urlToShorten' placeholder="url" ng-pattern='rValidUrl' required>
+    <p ng-show='shortenForm.url.$invalid && !shortenForm.url.$pristine' style="color: red">Invalid URL</p>
+    <button>shorten</button>
+  </form>
 </div>
 
 
