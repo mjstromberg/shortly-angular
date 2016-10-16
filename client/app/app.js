@@ -3,8 +3,8 @@ angular.module('shortly', [
   'shortly.links',
   'shortly.shorten',
   'shortly.auth',
-  'ngRoute'
-  // 'ngMaterial'
+  'ngRoute',
+  'ngMaterial'
 ])
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
@@ -50,6 +50,11 @@ angular.module('shortly', [
   return attach;
 })
 .run(function ($rootScope, $location, Auth) {
+  $rootScope.currentNavItem = 'links';
+
+  $rootScope.goto = function(path) {
+    $location.path(path);
+  };
   // here inside the run phase of angular, our services and controllers
   // have just been registered and our app is ready
   // however, we want to make sure the user is authorized

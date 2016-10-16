@@ -7,11 +7,10 @@ angular.module('shortly.links', [])
   
   Links.getAll()
     .then(function (links) {
-      // console.log('before sort: ', links);
       links.sort(function(a, b) {
         return a.visits < b.visits;
       });
-      // console.log('after sort: ', links);
+      
       $scope.data.links = links;
     })
     .catch(function(error) {

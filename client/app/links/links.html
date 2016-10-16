@@ -1,16 +1,28 @@
 <div id='container'>
-
-  <h1>Links!</h1>
-  <form name="searchForm">
-    <input type='text' name="url" ng-model='urlSearchString' placeholder="search">
-  </form>
-  <div ng-repeat="link in filterLinks()" class="link">
-  	<img src='/assets/redirect_icon.png'/>
-  	  <div class='info'>
-  	    <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
-  	    <div class='title'>{{link.title}}</div>
-  	    <div class='original'>{{link.url}}</div>
-  	    <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
-  	  </div>
-  </div>
+  <md-content layout-padding>
+    <div>
+      <form name="searchForm">
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>search</label>
+            <input type='text' name="url" ng-model='urlSearchString'>
+          </md-input-container>
+        </div>
+      </form>
+    </div>
+  </md-content>
+  <md-content>
+    <md-list flex>
+      <md-list-item ng-repeat="link in filterLinks()" class="md-3-line">
+      	<!-- <img src='/assets/redirect_icon.png' class="md-avatar"/> -->
+        <i class="material-icons" class="md-avatar">launch</i>
+      	  <div class='md-list-item-text' layout="column">
+            <h3>{{link.title}}</h3>
+      	    <p>{{link.visits}} Visits</p>
+      	    <p>{{link.url}}</p>
+      	    <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+      	  </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
 </div>
